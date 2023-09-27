@@ -1,4 +1,4 @@
-medcat==1.8.0
+https://github.com/mart-r/MedCAT/archive/CU-8692t3fdf-separate-config-on-save.zip
 pandas<2.0.0
 seaborn~=0.11.2
 pytest-xdist~=2.5.0
