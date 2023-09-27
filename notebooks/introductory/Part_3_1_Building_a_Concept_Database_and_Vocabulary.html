@@ -13099,7 +13099,10 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Install MedCAT</span>
-<span class="o">!</span> pip install <span class="nv">medcat</span><span class="o">==</span><span class="m">1</span>.9.1
+<span class="c1"># the TEMPORARY branch for the separated config stuff</span>
+<span class="c1"># TODO - change install version</span>
+<span class="c1"># ! pip install medcat==1.9.1</span>
+<span class="o">!</span> pip install https://github.com/mart-r/MedCAT/archive/CU-8692t3fdf-separate-config-on-save.zip
 <span class="c1"># Get the scispacy model</span>
 <span class="o">!</span> python -m spacy download en_core_web_md
 <span class="k">try</span><span class="p">:</span>
@@ -14274,6 +14277,28 @@ INFO:medcat:Current progress: 67% at 0.008s per 0 rows
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NB! The above does not save the config along with the CDB (which used to be the case).</strong>
+In order to save the config, one can use</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cdb</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Load-the-Concept-Database-model">Load the Concept Database model<a class="anchor-link" href="#Load-the-Concept-Database-model">&#182;</a></h3>
 </div>
 </div>
@@ -14284,6 +14309,7 @@ INFO:medcat:Current progress: 67% at 0.008s per 0 rows
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cdb</span> <span class="o">=</span> <span class="n">CDB</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;cdb.dat&quot;</span><span class="p">)</span>
+<span class="n">cdb</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14308,6 +14334,15 @@ INFO:medcat:Current progress: 67% at 0.008s per 0 rows
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NB! The <code>CDB.load</code> method does not load the config along with the CDB (which used to be the case).</strong>
+Which is why the <code>load_config</code> method needs to be used as well.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
