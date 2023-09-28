@@ -13085,7 +13085,10 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Install medcat</span>
-<span class="o">!</span> pip install <span class="nv">medcat</span><span class="o">==</span><span class="m">1</span>.8.0
+<span class="c1"># the TEMPORARY branch for the separated config stuff</span>
+<span class="c1"># TODO - change install version</span>
+<span class="c1"># ! pip install medcat==1.9.1</span>
+<span class="o">!</span> pip install https://github.com/mart-r/MedCAT/archive/CU-8692t3fdf-separate-config-on-save.zip
 <span class="c1"># Get the spacy model</span>
 <span class="o">!</span> python -m spacy download en_core_web_md
 <span class="k">try</span><span class="p">:</span>
@@ -13759,6 +13762,13 @@ cdb-medmen-v1_2.dat 100%[===================&gt;] 339.99M 67.2MB/s in 6.4s
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create and load the CDB (Concept Database)</span>
 <span class="n">cdb</span> <span class="o">=</span> <span class="n">CDB</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cdb_path</span><span class="p">)</span>
+<span class="c1"># NB! The above loads the config with the CDB because the CDB being loaded is </span>
+<span class="c1"># saved using the old format</span>
+<span class="c1"># in newer versions (1.10.0 and later) the config would need to be loaded separately</span>
+<span class="c1"># i.e:</span>
+<span class="c1"># config_path = DATA_DIR + &quot;config.json&quot;</span>
+<span class="c1"># cdb.load_config(config_path)</span>
+<span class="c1"># However, in this situation, it&#39;s not too relevant since we use another config anyway</span>
 
 <span class="c1"># Create and load the Vocabulary</span>
 <span class="n">vocab</span> <span class="o">=</span> <span class="n">Vocab</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">vocab_path</span><span class="p">)</span>
@@ -13769,6 +13779,7 @@ cdb-medmen-v1_2.dat 100%[===================&gt;] 339.99M 67.2MB/s in 6.4s
 
 <span class="c1"># Create CAT - the main class from medcat used for concept annotation</span>
 <span class="n">cat</span> <span class="o">=</span> <span class="n">CAT</span><span class="p">(</span><span class="n">cdb</span><span class="o">=</span><span class="n">cdb</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">vocab</span><span class="o">=</span><span class="n">vocab</span><span class="p">)</span>
+<span class="c1"># The initialiser will change the config attached to the cdb as well (if one was loaded with it)</span>
 </pre></div>
 
     </div>
@@ -13857,10 +13868,10 @@ cdb-medmen-v1_2.dat 100%[===================&gt;] 339.99M 67.2MB/s in 6.4s
 
  
  
-<div id="01c9652b-c911-4441-a8f2-79348a8e6681"></div>
+<div id="24aab470-17e7-41bb-bff7-4883cda46450"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#01c9652b-c911-4441-a8f2-79348a8e6681');
+var element = $('#24aab470-17e7-41bb-bff7-4883cda46450');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "6fd10f1692234019836a7b40e83b56dd", "version_major": 2, "version_minor": 0}
@@ -13879,10 +13890,10 @@ var element = $('#01c9652b-c911-4441-a8f2-79348a8e6681');
 
  
  
-<div id="9b1519ac-c514-404f-8e07-e70685f68466"></div>
+<div id="3ddd0e12-1e99-4373-ab72-8b6f5fa129a1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9b1519ac-c514-404f-8e07-e70685f68466');
+var element = $('#3ddd0e12-1e99-4373-ab72-8b6f5fa129a1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "9a5ab9cfecc242b7aaf0f140e87bdde6", "version_major": 2, "version_minor": 0}
@@ -13961,10 +13972,10 @@ Myocardial Infarction - C0027051 - 6
 
  
  
-<div id="058c2405-4698-41e0-a2d4-78bbdc4c888a"></div>
+<div id="8a4cb22c-dc53-4234-830c-1fa1a143e944"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#058c2405-4698-41e0-a2d4-78bbdc4c888a');
+var element = $('#8a4cb22c-dc53-4234-830c-1fa1a143e944');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "434496e448984f55925d22fad0349ada", "version_major": 2, "version_minor": 0}
@@ -13983,10 +13994,10 @@ var element = $('#058c2405-4698-41e0-a2d4-78bbdc4c888a');
 
  
  
-<div id="341bf07f-2be4-4439-8236-3ae69874212b"></div>
+<div id="9be3ae17-a124-4ec6-87c7-871461f19ed1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#341bf07f-2be4-4439-8236-3ae69874212b');
+var element = $('#9be3ae17-a124-4ec6-87c7-871461f19ed1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "f7d1803b3c6c4197b6612c5fdf189746", "version_major": 2, "version_minor": 0}
@@ -14005,10 +14016,10 @@ var element = $('#341bf07f-2be4-4439-8236-3ae69874212b');
 
  
  
-<div id="d82f3606-4df8-4478-9e8a-2ecf7de1c3d9"></div>
+<div id="b9cc900b-8cf6-4308-8c2c-682a15ebfeb8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#d82f3606-4df8-4478-9e8a-2ecf7de1c3d9');
+var element = $('#b9cc900b-8cf6-4308-8c2c-682a15ebfeb8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "c8d633f579de438a916d9ef3de9d8fe0", "version_major": 2, "version_minor": 0}
@@ -14027,10 +14038,10 @@ var element = $('#d82f3606-4df8-4478-9e8a-2ecf7de1c3d9');
 
  
  
-<div id="7b6b5947-485b-4d4c-93c4-006f3662bbc1"></div>
+<div id="deaa2d38-3b6d-43f0-bf29-24ea37d497ce"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#7b6b5947-485b-4d4c-93c4-006f3662bbc1');
+var element = $('#deaa2d38-3b6d-43f0-bf29-24ea37d497ce');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "de6c01c6983041e2b972f6008caefaea", "version_major": 2, "version_minor": 0}
@@ -14049,10 +14060,10 @@ var element = $('#7b6b5947-485b-4d4c-93c4-006f3662bbc1');
 
  
  
-<div id="342f2daa-6e1e-4778-9b6d-974960ddebb0"></div>
+<div id="83a8303a-d68b-4beb-8be3-7036cd54fab2"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#342f2daa-6e1e-4778-9b6d-974960ddebb0');
+var element = $('#83a8303a-d68b-4beb-8be3-7036cd54fab2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "05132c907a874fe2a2eb9cb6c81da3b3", "version_major": 2, "version_minor": 0}
@@ -17500,10 +17511,10 @@ Renal Insufficiency - C1565489 - 7
 
  
  
-<div id="ea2aa048-76b8-418d-9968-38f77b3d97a5"></div>
+<div id="d2585ce1-d352-459d-a3ed-04bc584c2b47"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ea2aa048-76b8-418d-9968-38f77b3d97a5');
+var element = $('#d2585ce1-d352-459d-a3ed-04bc584c2b47');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "00325922360c45009329d82ed6420f16", "version_major": 2, "version_minor": 0}
@@ -17522,10 +17533,10 @@ var element = $('#ea2aa048-76b8-418d-9968-38f77b3d97a5');
 
  
  
-<div id="fdcd3919-ce59-414d-a672-b14922ba3445"></div>
+<div id="86fdbab6-dd68-4539-9939-384befe6325b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#fdcd3919-ce59-414d-a672-b14922ba3445');
+var element = $('#86fdbab6-dd68-4539-9939-384befe6325b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "d48e2f4d6dd3467fb3f17e0244b0e361", "version_major": 2, "version_minor": 0}

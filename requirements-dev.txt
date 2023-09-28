@@ -1,4 +1,4 @@
-medcat==1.8.0
+git+https://github.com/mart-r/MedCAT.git@89f01df4b1345d1bfcbb7d88efc2265d0ab6fdbf
 pandas<2.0.0
 seaborn~=0.11.2
 pytest-xdist~=2.5.0
